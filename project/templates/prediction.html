@@ -1,0 +1,81 @@
+<!-- Use the action attribute to call the 'main' function -->
+<!doctype html>
+
+<html>
+    <head>
+
+        <!-- CSS code -->
+        <style>
+        form {
+            margin: auto;
+            width: 35%;
+        }
+
+        .result {
+            margin: auto;
+            width: 35%;
+            border: 1px solid #ccc;
+        }
+        </style>
+
+        <title>Bike Usage Model</title>
+    </head>
+
+    <body>
+        <form action="/prediction" method="POST">
+            <fieldset>
+                <legend>Input values:</legend>
+                PRODUCT DEPT ID:
+                <input name="product_department_id " type="number" required>
+                <br>
+                <br> PRODUCT SUB DEPT ID:
+                <input name="product_subdepartment_id" type="number" required>
+                <br>
+                 <br> PRODUCT TYPE:
+                <input name="product_type_id" type="number" required>
+                 <br>
+                 PRODUCT SUB TYPE:
+                <input name="product_subtype_id" type="number" required>
+                <br>
+                <br> PRODUCT FAMILY
+                 <input name="product_family_id" type="number" required>
+                 <br>
+                <br> ORIGIN SITE:
+                <input name="origin_site_key" type="number" required>
+                <br>
+                DESTINATION:
+                 <input name="destination_site_key" type="number" required>
+                <br>
+                <br> DAY OF DELIVERY:
+                <input name="day_of_delivery" type="number" required>
+                <br>
+                <br> DISTANCE:
+                <input name="distance" type="number" required>
+                <br>
+                <br>
+                <input type="submit">
+    </fieldset>
+    </form>
+
+    <br>
+
+    <div class="result" align="center">
+        
+        <!-- Our 'result' is false until a prediction has been made -->
+        {% if result %}
+
+            <!-- Loop through dictionary and print key:value pair -->
+            {% for variable in original_input %}
+                <b>{{ variable }}:</b> {{ original_input[variable] }}
+            {% endfor %}
+            <br>
+            <!-- Print prediction -->
+            <br> Predicted number of bikes in use:
+            <p style="font-size:50px">{{ result }}</p>
+        
+        {% endif %}
+    </div>
+
+</body>
+
+</html>
